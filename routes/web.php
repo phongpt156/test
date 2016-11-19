@@ -25,3 +25,14 @@ Route::group(['prefix' => 'product'], function () {
 	Route::get('discount', 'Front\ProductController@GetDiscountProducts');
 	Route::get('tendency', 'Front\ProductController@GetTendencyProducts');
 });
+
+Route::group(['prefix' => 'category'], function () {
+	Route::get('/male', 'Front\CategoryController@GetMaleCategories');
+	Route::get('/female', 'Front\CategoryController@GetFeMaleCategories');
+});
+
+Route::get('/product-feature/{feature_name?}', 'Front\ProductFeatureController@GetFeatureDefaultValue');
+
+Route::get('/test', function () {
+	return view('test');
+});

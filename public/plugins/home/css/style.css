@@ -55,11 +55,11 @@ a:hover, a:focus, a:active {
 #bs-navbar {
     text-align: center;
 }
-.search-form {
+.search-form-container {
     margin-top: 15px;
     float: none !important;
 }
-.search-form input {
+.search-form-component {
     outline: none;
     height: 38px;
     float: left;
@@ -67,10 +67,10 @@ a:hover, a:focus, a:active {
     border: none;
     border-radius: 0;
 }
-.search-form input[type="text"] {
+.search-form-container input[type="text"] {
     padding: 15px;
 }
-.search-form input[type="submit"] {
+.submit-search-form {
 	padding: 0;
     background: url('http://i.imgur.com/DSIn4YP.png') no-repeat center #fff;
 }
@@ -82,10 +82,6 @@ a:hover, a:focus, a:active {
     top: 14px;
     right: 0;
 }
-.dropdown-menu-header {
-    left: 0 !important;
-    border: none;
-}
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
     color: white;
     background-color: #313131;
@@ -93,12 +89,64 @@ a:hover, a:focus, a:active {
 .nav > li > a:focus {
     background-color: transparent;
 }
-.dropdown-menu {
+.dropdown-menu-header > li > ul{
+    position: absolute;
+}
+/* header menu */
+.category-menu-container {
+    z-index: 2000;
+    width: 100%;
+    position: absolute;
+    padding: 40px;
+    opacity: 0.93;
     background-color: #313131;
 }
-.dropdown-menu > li > a {
+.category-menu-container > .category-item-container {
+    width: 100%;
+    display: flex;
+}
+.category-menu-container > .category-item-container > li {
+    width: 100%;
+    margin: 0 20px;
+    float: left;
+}
+.category-menu-container > .category-item-container > li > a {
+    font-size: 18px !important;
+}
+.category-item-container {
+    list-style: none;
+    display: inline-block;
+}
+.category-item-container > li {
+}
+.category-item-container > li > a {
+    text-transform: capitalize;
+    padding: 5px 0;
+    font-size: 12px !important;
+    display: block;
+}
+.header-menu {
+    width: 100%;
+    min-width: 100%;
+    padding: 15px 0;
+    background-color: #242323;
+}
+.color-list-item {
+    padding: 0 10px;
+}
+.header-menu > li > a{
+    text-transform: capitalize;
+    padding: 0 0 0 10px;
     color: white;
 }
+.header-menu > li:not(:last-child) {
+    margin-bottom: 15px;
+}
+.color-list-item > a {
+    padding: 0 !important;
+    height: 5px;
+}
+/* end header menu */
 @media (max-width: 767px) {
     .nav-border {
         display: none;
@@ -237,12 +285,11 @@ a:hover, a:focus, a:active {
     width: 240px;
     height: 80px;
 }
-.collection-item:first-child a{
-    padding-top: 0 !important;
-}
 .collection-item a{
     text-align: center;
-    padding: 30px 15px 0 15px !important;
+}
+.collection-item-container {
+    background: #232323;
 }
 .collection-item-container .pagination {
     display: none;
@@ -256,7 +303,40 @@ a:hover, a:focus, a:active {
 .product-list {
     padding: 0 5px;
     margin-left: 10px;
-    border-left: 2px solid white;
+}
+.kindof-product::before {
+    width: 29px;
+    position: absolute;
+    left: -29px;
+    height: 40px;
+    float: left;
+    display: inline-block;
+    content: "";
+    background: url('http://i.imgur.com/FnJB6tW.png') no-repeat;
+}
+.kindof-product {
+    position: relative;
+    padding: 0;
+    list-style: none;
+    float: right;
+    background: #232323;
+}
+.kindof-product > li {
+    float: left;
+}
+.kindof-product > li.active {
+    background: transparent;
+}
+.kindof-product > li.active > a > p{
+    padding-bottom: 2px;
+    border-bottom: 2px solid #434947;
+}
+.kindof-product > li > a {
+    padding: 9px 15px 7px;
+}
+.kindof-product > li > a > p {
+    font-weight: bold;
+    margin: 0;
 }
 .product-list .nav-pills {
     vertical-align: middle;
@@ -269,12 +349,6 @@ a:hover, a:focus, a:active {
      url('http://i.imgur.com/eKoSAYT.png') no-repeat top left,
      url('http://i.imgur.com/eKoSAYT.png') no-repeat bottom right;
 }
-.product-list .nav-pills > li > a{
-    padding: 2px 15px;
-}
-.product-list .nav-pills > li.active > a {
-    background: #313131 !important;
-}
 .product {
     margin-top: 10px;
 }
@@ -284,7 +358,7 @@ a:hover, a:focus, a:active {
     list-style: none;
 }
 .product-container > ul > li {
-    padding: 5px;
+    padding: 2px;
 }
 .product-user-action {
     position: relative;
@@ -294,7 +368,7 @@ a:hover, a:focus, a:active {
 }
 .product-user-action > a > img {
     width: 100%;
-    height: 218px;
+    height: 230px;
 }
 .product-user-action:hover > ul {
     display: block;
@@ -351,20 +425,19 @@ a:hover, a:focus, a:active {
     .product-user-action > ul > li {
         padding: 0;
     }
-    .collection-list, .product-list {
-        border: none;
-    }
     .collection-item:first-child a{
         padding-top: 10px !important;
     }
 }
 @media (min-width: 768px) {
+    .kindof-product > li > a {
+        padding: 9px 15px 7px;
+    }
     .collection-list::-webkit-scrollbar {
         display: none;
     }
     .collection-list {
         width: 270px;
-        border-right: 2px solid white;
     }
     .product-list {
         width: 470px;
@@ -378,6 +451,9 @@ a:hover, a:focus, a:active {
     .product-list {
         width: 690px;
     }
+    .kindof-product > li > a {
+        padding: 9px 35px 7px;
+    }
 }
 @media (min-width: 1200px) {
     .product-list {
@@ -385,22 +461,21 @@ a:hover, a:focus, a:active {
     }
 
 }
+
 .product::-webkit-scrollbar-track, .collection-list::-webkit-scrollbar-track
 {
- -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
- border-radius: 10px;
- background-color: #F5F5F5;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background: rgb(20, 20, 20);
 }
 .product::-webkit-scrollbar, .collection-list::-webkit-scrollbar
 {
- width: 10px;
- background-color: #F5F5F5;
+    width: 10px;
+    background-color: #F5F5F5;
 }
 .product::-webkit-scrollbar-thumb, .collection-list::-webkit-scrollbar-thumb
-{
- border-radius: 10px;
- -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
- background-color: #555;
+{ 
+    border-radius: 10px;
+    background-color: #232323;
 }
 .collection-list {
     overflow: auto;
@@ -408,7 +483,7 @@ a:hover, a:focus, a:active {
 }
 .product {
     overflow: auto;
-    max-height: 908px;
+    max-height: 910px;
 }
 .product-total-page, .collection-total-page {
     display: none;
@@ -478,3 +553,8 @@ a:hover, a:focus, a:active {
     margin: 0px 0 3px 3px;
 }
 /* end footer */
+
+/* search tagging */
+
+
+/* end search tagging */

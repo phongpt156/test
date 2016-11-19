@@ -1,6 +1,4 @@
-@if($discount_products)
-
-	@foreach($discount_products as $key => $value)
+@foreach($tendency_products as $key => $value)
 	<li class="product-item col-lg-3 col-md-4 col-sm-6 col-xs-4">
 		<div class="product-user-action">
 			<a href="" title="">
@@ -33,6 +31,5 @@
 			<a href="" title="" class="product-sum-like"><span><img src="http://i.imgur.com/seWtRZc.png" alt=""> {{ $value->like }}</span></a>
 		</div>
 	</li>
-	@endforeach
-@endif
-<div class="discount-product-total-page" total-page="{{ $discount_products->lastPage()}}" current-page="{{ $discount_products->currentPage() }}"></div>
+@endforeach
+<div class="tendency-product-total-page" total-page="{{ $tendency_products->lastPage()}}" current-page="{{ $tendency_products->currentPage() }}"></div>

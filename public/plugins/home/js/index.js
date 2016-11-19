@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+  $(".category-menu-container").hide();
+  $(".menu-header-container > li > a").on("click", function() {
+    var target = $(this).attr("target");
+    $(target).toggle();
+  });
   var jssor_1_SlideoTransitions = [
     [{b:-1,d:1,o:-1},{b:0,d:1000,o:1}],
     [{b:1900,d:2000,x:-379,e:{x:7}}],
@@ -79,5 +84,68 @@ $(document).ready(function () {
         }
       });
     }
-  }
+  };
+  window.ProductHome = {
+    init: function() {
+      p = $(".product");
+      c = $(".product-item-container");
+      length = $(".kindof-product > li").length;
+      for(i = 0; i < length; i++) {
+        if($(".kindof-product > li").eq(i).attr("class") == "active") {
+          target = $(".kindof-product > li").eq(i).attr("data-target");
+          url = target;
+          id = "." + target + "-product-total-page";
+        }
+      }
+      current_page = $(id).attr("current-page");
+      total_page = $(id).attr("total-page");
+      $(".kindof-product > li").on("click", function() {
+        $(".product").scrollTop(0);
+        for(i = 0; i < length; i++) {
+          if($(".kindof-product > li").eq(i).attr("class") == "active") {
+            $(".kindof-product > li").eq(i).attr("class", "");
+          }
+        }
+        $(this).attr("class", "active");
+        url = $(this).attr("data-target");
+        $.ajax({
+          asyn: true,
+          url: "http://localhost:8000/product/" + url,
+          type: "GET",
+          dataType: "html",
+          success: function(data) {
+            $(".product-item-container").html(data);
+            id = "." + url + "-product-total-page";
+            current_page = $(id).attr("current-page");
+            total_page = $(id).attr("total-page");
+          }
+        });
+      });
+      $(".product").on("scroll", function() {
+        if(p.scrollTop() >= c.height() - p.height()) {
+          if(current_page < total_page) {
+            current_page++;
+            $.ajax({
+              url: "http://localhost:8000/product/" + url + "?page=" + current_page,
+              type: "GET",
+              dataType: "html",
+              success: function(data) {
+                $(".product-item-container").append(data);
+              }
+            })
+          }
+        }
+      });
+    }
+  };
+
+  window.SearchTagging = {
+    init: function() {
+      $(".search-tagging").on("click", function() {
+        html = "<input type='text' class='search-tag-element'/>";
+        $(".search-form").append(html);
+      });
+    }
+  };
+
 });
