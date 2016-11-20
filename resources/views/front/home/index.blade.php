@@ -58,7 +58,7 @@
                             </a>
                         </li>
 
-                        <li>
+                        <li class="pft">
                             <a href="" title="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 Kiểu
                                 <span><img src="http://i.imgur.com/4QUY0ge.png" alt=""></span>
@@ -66,7 +66,7 @@
                             </a>
                         </li>
 
-                        <li>
+                        <li class="pft">
                             <a href="" title="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 Màu sắc
                                 <span><img src="http://i.imgur.com/4QUY0ge.png" alt=""></span>
@@ -75,7 +75,7 @@
                             @include('front.productfeature.color-default-value', ['values' => $color_values])
                         </li>
 
-                        <li>
+                        <li class="pft">
                             <a href="" title="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 Chất liệu
                                 <span><img src="http://i.imgur.com/4QUY0ge.png" alt=""></span>
@@ -83,7 +83,7 @@
                             </a>
                             @include('front.productfeature.material-default-value', ['values' => $material_values])
                         </li>
-                        <li>
+                        <li class="pft">
                             <a href="" title="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 Họa tiết
                                 <span><img src="http://i.imgur.com/4QUY0ge.png" alt=""></span>
@@ -283,9 +283,6 @@
         </div>
     </div>
 </section>
-<form>
-    <input type="text" class="form-control" id="tokenfield" value="red,green,blue" />
-</form>
 <script type="text/javascript">
     $(document).ready(function(){
         ProductHome.init();

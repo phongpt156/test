@@ -5,6 +5,9 @@ $(document).ready(function () {
     var target = $(this).attr("target");
     $(target).toggle();
   });
+  $(".pft").on("click", function() {
+    $(".category-menu-container").hide();
+  });
   var jssor_1_SlideoTransitions = [
     [{b:-1,d:1,o:-1},{b:0,d:1000,o:1}],
     [{b:1900,d:2000,x:-379,e:{x:7}}],
@@ -141,9 +144,48 @@ $(document).ready(function () {
 
   window.SearchTagging = {
     init: function() {
-      $(".search-tagging").on("click", function() {
-        html = "<input type='text' class='search-tag-element'/>";
-        $(".search-form").append(html);
+      $(".search-tagging > li > a").on("click", function() {
+        cls = $(this).attr("class");
+        if(cls) {
+          if(cls.search("disabled") === -1) {
+            if($(this).attr("value")) {
+              value = $(this).attr("value");
+            }
+            html = "<div class='search-tag-element-container' value='" + value + "'><a class='delete-search-tag' target='" + value + "' href='javascript:void(0)'>x</a><span class='search-tag-element'>" + value + "</span><input type='text' class='search-tag-element' disabled='disabled' value='" + value + "' /></div>";
+            $(".search-tag-container").append(html);
+          }
+          else {
+            length = $(".search-tag-container > .search-tag-element-container").length;
+            for(i = 0; i < length; i++) {
+              if($(".search-tag-container > .search-tag-element-container").eq(i).attr("value") === $(this).attr("value")) {
+                $(".search-tag-container > .search-tag-element-container").eq(i).remove();
+              }
+            }
+          }
+        }
+        else {
+          if($(this).attr("value")) {
+              value = $(this).attr("value");
+          }
+          html = "<div class='search-tag-element-container' value='" + value + "'><a class='delete-search-tag' target='" + value + "' href='javascript:void(0)'>x</a><span class='search-tag-element'>" + value + "</span><input type='text' class='search-tag-element' disabled='disabled' value='" + value + "' /></div>";
+          $(".search-tag-container").append(html);
+        }
+        $(this).toggleClass("disabled");
+      });
+
+      $(document).on("click", ".delete-search-tag", function() {
+        length = $(".search-tag-container > .search-tag-element-container").length;
+        for(i = 0; i < length; i++) {
+          if($(".search-tag-container > .search-tag-element-container").eq(i).attr("value") === $(this).attr("target")) {
+            $(".search-tag-container > .search-tag-element-container").eq(i).remove();
+          }
+        }
+        length = $(".disabled").length;
+        for(i = 0; i < length; i++) {
+          if($(".disabled").eq(i).attr("value") === $(this).attr("target")) {
+            $(".disabled").removeClass("disabled");
+          }
+        }
       });
     }
   };

@@ -11,7 +11,7 @@
 			if($tmp) {
 				echo "<ul class='category-item-container nav search-tagging'>";
 				foreach($tmp as $item) {
-					echo "<li><a href='javascript:void(0)' title='' class='dropdown-toggle'>" . $item->name;
+					echo "<li value='" . $item->name ."'><a href='javascript:void(0)' title='' class='dropdown-toggle' value='" . $item->name . "'>" . $item->name;
 					echo "</a>";
 					showMaleMenuCategories($male_categories, $item->id);
 					echo "</li>";
