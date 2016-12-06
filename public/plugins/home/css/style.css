@@ -315,18 +315,30 @@ span.search-tag-element {
 /* home body */
 .home-body-content {
     margin-top: 70px;
-    margin-bottom: 70px;
+    margin-bottom: 0px;
 
 }
 
 /* collection list */
-
+.collection-list-container, .product-list-container {
+    padding: 0;
+}
 .collection-item img {
     width: 240px;
+    max-width: 100% !important;
     height: 80px;
+    display: inline-block;
 }
-.collection-item a{
+.collection-item {
+    float: none !important;
+}
+.collection-item a {
     text-align: center;
+    padding-top: 0 !important;
+    padding-bottom: 15px !important;
+}
+.collection-item:first-child a {
+    padding-top: 15px !important;
 }
 .collection-item-container {
     background: #232323;
@@ -456,6 +468,10 @@ span.search-tag-element {
     font-size: 10px;
 }
 .supplier-name {
+    width: 50%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     float: left;
 }
 .product-price, .product-sum-like {
@@ -476,29 +492,21 @@ span.search-tag-element {
     .collection-list::-webkit-scrollbar {
         display: none;
     }
-    .collection-list {
-        width: 270px;
-    }
-    .product-list {
-        width: 470px;
-    }
+
+    
     .collection-list-container, .product-list-container{
         float: left;
     }
 
 }
 @media (min-width: 992px) {
-    .product-list {
-        width: 690px;
-    }
+    
     .kindof-product > li > a {
         padding: 9px 35px 7px;
     }
 }
 @media (min-width: 1200px) {
-    .product-list {
-        width: 890px;
-    }
+    
 
 }
 
@@ -566,11 +574,14 @@ span.search-tag-element {
 /* footer */
 .home-footer {
     text-align: center;
-    padding: 17px 0 0 0 ;
+    padding: 0px 0 0 0 ;
     font-family: VL_Piron;
     color: white;
-    background-color: #191919;
     padding-bottom: 30px;
+}
+.main-footer-container {
+    padding-top: 15px;
+    background: url('http://i.imgur.com/l93xptQ.jpg');
 }
 .main-footer-container a {
     padding: 5px 0;
@@ -600,3 +611,76 @@ span.search-tag-element {
     background-color: #313131;
 }
 /* end search tagging */
+
+/* product detail */
+.modal {
+    text-align: center;
+    padding: 0 !important;
+}
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.product-modal {
+    width: 480px;
+    height: 360px;
+}
+.product-detail-container {
+    width: 480px;
+    height: 360px;
+}
+.product-detail-info-container a {
+    width: 100%;
+    color: black;
+}
+.product-detail-info-container h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 17.37px;
+}
+.hr-bottom {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #747474;
+}
+.product-detail-info-container h2 {
+    margin: 20px 0 0 0;
+    float: left;
+    font-size: 15.2px;
+    font-weight: bold;
+    border-bottom: 4px solid #000000;
+}
+.product-detail-info-container p {
+   color: #636363; 
+} 
+.product-detail-body {
+    background-color: white;
+}
+.product-detail-footer {
+    height: 20px;
+    background-color: #363636;
+}
+.product-detail-image-container {
+    float: left;
+}
+.product-detail-image-container a:hover {
+    opacity: 1;
+}
+.product-detail-image-container img {
+    width: 270px;
+    height: 340px;
+}
+.product-detail-info-container {
+    width: 210px;
+    padding: 20px 18px 0 20px;
+    height: 340px;
+    float: left;
+}
+/* end product detail */

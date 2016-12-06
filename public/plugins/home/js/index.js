@@ -1,11 +1,14 @@
 $(document).ready(function () {
-
+  $('[data-toggle="tooltip"]').tooltip(); 
   $(".category-menu-container").hide();
   $(".menu-header-container > li > a").on("click", function() {
     var target = $(this).attr("target");
     $(target).toggle();
   });
   $(".pft").on("click", function() {
+    $(".category-menu-container").hide();
+  });
+  $(document).on("click", function() {
     $(".category-menu-container").hide();
   });
   var jssor_1_SlideoTransitions = [
@@ -151,7 +154,20 @@ $(document).ready(function () {
             if($(this).attr("value")) {
               value = $(this).attr("value");
             }
-            html = "<div class='search-tag-element-container' value='" + value + "'><a class='delete-search-tag' target='" + value + "' href='javascript:void(0)'>x</a><span class='search-tag-element'>" + value + "</span><input type='text' class='search-tag-element' disabled='disabled' value='" + value + "' /></div>";
+            length = $(".search-tag-element-container").length + 1;
+            if(length) {
+              if($(this).attr("class").search("product_feature") !== -1) {
+                html = "<div class='search-tag-element-container' value='" + value + "'><a class='delete-search-tag' target='" + value + "' href='javascript:void(0)'>x</a><span class='search-tag-element'>" + value + "</span><input type='text' class='search-tag-element' name='product[feature][" + length + "]' value='" + value + "' /></div>";
+              }
+              else if($(this).attr("class").search("female") !== -1) {
+                name = $(this).attr("name");
+                html = "<div class='search-tag-element-container' value='" + value + "'><a class='delete-search-tag' target='" + value + "' href='javascript:void(0)'>x</a><span class='search-tag-element'>" + name + "</span><input type='text' class='search-tag-element' name='cate[female][" + length + "]' value='" + value + "' /></div>";
+              }
+              else if($(this).attr("class").search("male") !== -1) {
+                name = $(this).attr("name");
+                html = "<div class='search-tag-element-container' value='" + value + "'><a class='delete-search-tag' target='" + value + "' href='javascript:void(0)'>x</a><span class='search-tag-element'>" + name + "</span><input type='text' class='search-tag-element' name='cate[male][" + length + "]' value='" + value + "' /></div>";
+              }
+            }
             $(".search-tag-container").append(html);
           }
           else {
@@ -167,7 +183,20 @@ $(document).ready(function () {
           if($(this).attr("value")) {
               value = $(this).attr("value");
           }
-          html = "<div class='search-tag-element-container' value='" + value + "'><a class='delete-search-tag' target='" + value + "' href='javascript:void(0)'>x</a><span class='search-tag-element'>" + value + "</span><input type='text' class='search-tag-element' disabled='disabled' value='" + value + "' /></div>";
+          length = $(".search-tag-element-container").length + 1;
+          if(length) {
+            if($(this).attr("class").search("product_feature") !== -1) {
+              html = "<div class='search-tag-element-container' value='" + value + "'><a class='delete-search-tag' target='" + value + "' href='javascript:void(0)'>x</a><span class='search-tag-element'>" + value + "</span><input type='text' class='search-tag-element' name='product[feature][" + length + "]' value='" + value + "' /></div>";
+            }
+            else if($(this).attr("class").search("female") !== -1) {
+              name = $(this).attr("name");
+              html = "<div class='search-tag-element-container' value='" + value + "'><a class='delete-search-tag' target='" + value + "' href='javascript:void(0)'>x</a><span class='search-tag-element'>" + name + "</span><input type='text' class='search-tag-element' name='cate[female][" + length + "]' value='" + value + "' /></div>";
+            }
+            else if($(this).attr("class").search("male") !== -1) {
+              name = $(this).attr("name");
+              html = "<div class='search-tag-element-container' value='" + value + "'><a class='delete-search-tag' target='" + value + "' href='javascript:void(0)'>x</a><span class='search-tag-element'>" + name + "</span><input type='text' class='search-tag-element' name='cate[male][" + length + "]' value='" + value + "' /></div>";
+            }
+          }
           $(".search-tag-container").append(html);
         }
         $(this).toggleClass("disabled");
@@ -189,5 +218,29 @@ $(document).ready(function () {
       });
     }
   };
+  window.ViewProduct = {
+    init: function() {
+      $(".product-image-container").on("click", function(e) {
+        e.preventDefault();
+        url = $(this).attr("href");
+        $.ajax({
+          type: 'GET',
+          dataType: 'html',
+          url: url,
+          success: function(data) {
+            $("body").prepend(data);
+            $("#product-detail").modal({
+              show: true,
+              keyboard: 'static',
+              backdrop: true
+            });
+            $("#product-detail").on('hidden.bs.modal', function () {
+              $("#product-detail").remove();
+            });
+          }
+        });
+      });
+    }
+  }
 
 });
