@@ -187,8 +187,7 @@
 </section>
 <script type="text/javascript">
     $(document).ready(function(){
-        ProductHome.init();
-        
+        Home.init();
         var collection_p = $(".collection-list");
         var collection_c = $(".collection-item-container");
         var collection_id = $("#collection-total-page");
@@ -196,7 +195,6 @@
         var append_pos = $(".collection-item-container");
         Scroll.init(collection_c, collection_p, collection_id, collection_url, append_pos);
         SearchTagging.init();
-        ViewProduct.init();
     });
 </script>
 @endsection

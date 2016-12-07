@@ -9,7 +9,7 @@ class ProductDAL
 						->join('product_image as p_i', 'p.id', '=', 'p_i.product_id')
 						->join('supplier as s', 'p.supplier_id', '=', 's.id')
 						->join('product_rating as p_r', 'p.id', '=', 'p_r.product_id')
-						->select('p.id as id', 'p.name as p_name', 'p.price', 'p.discount', 'p_i.name as p_i_name', 'p_i.alt', 'p_r.like', 's.name as s_name', 'p.created_at');
+						->select('p.id as id', 'p.name as p_name', 'p.price', 'p.discount', 'p_i.name as p_i_name', 'p_i.alt', 'p_r.like', 's.name as s_name', 's.address as s_address', 'p.created_at');
 		return $products;
 	}
 	public static function GetNewestProducts() {
