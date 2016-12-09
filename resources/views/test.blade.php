@@ -7,21 +7,30 @@
 	<link rel="stylesheet" href="{!! asset('plugins/bootstrap/css/bootstrap.min.css') !!}">
 	<script type="text/javascript" src="{!! asset('plugins/jquery/jquery.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('plugins/bootstrap/js/bootstrap.min.js') !!}"></script>
-	<script type="text/javascript" src="{!! asset('plugins/jquery/select2.min.js') !!}"></script>
 	<style>
 		
 	</style>
 </head>
 <body>
-	<select class="js-example-basic-single">
-  		<option value="AL">Alabama</option>
-    	...
-  		<option value="WY">Wyoming</option>
-	</select>
+	@if(isset($products))
+		{{$products}}
+	@else
+		123
+	@endif
+	<input type="button" name="">
   	<script type="text/javascript">
-  		$(document).ready(function(){
-  			$(".js-example-basic-single").select2();
-  		})
+  		$("input[type='button']").on("click", function(){
+  			alert(123);
+  			$.ajax({
+  				url: "http://localhost:8000/test1",
+  				type: "get",
+  				dataType: "html",
+  				success: function(data) {
+  					alert(123);
+  					$("body").html(data);
+  				}
+  			});
+  		});
   	</script>
 </body>
 </html>

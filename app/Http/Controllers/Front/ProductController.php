@@ -29,11 +29,4 @@ class ProductController extends Controller
     	$tendency_products = ProductBLL::GetTendencyProducts();
     	return view('front.product.tendency-product', compact('tendency_products'));
     }
-
-    public static function GetOneProduct($id) {
-        $product = ProductBLL::GetOneProduct($id);
-        $feature_value = ProductBLL::GetFeatureValueProduct($id);
-        $feature_name = ProductBLL::GetFeatureNameProduct($id);
-        return view('front.home.product-detail', compact('product', 'feature_value', 'feature_name'));
-    }
 }

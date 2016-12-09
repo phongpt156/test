@@ -1,20 +1,20 @@
 @if($product)
-<div class="modal fade" id="product-detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog product-modal" role="document">
-	    <div class="product-detail-container">
-	        <div class="product-detail-body clearfix">
-	        	<div class="product-detail-image-container">
-	        		<a href="" title="">
-	        			<img src="{!! $product[0]->p_i_name !!}" alt="">
-	        		</a>
-	        	</div>
-	        	<div class="product-detail-info-container">
-	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        		<a href="" title=""><h1>{!! $product[0]->p_name !!}</h1></a>
-	        		<div class="hr-bottom clearfix">
-	        			<h2>Thông tin</h2>
-	        		</div>
-	        		<p>- Giá : <a href="" title="">{{ $product[0]->price }} VNĐ</a></p>
+	<div class="product-card clearfix">
+		<div class="product-detail-image-container">
+    		<a href="" title="">
+    			<img src="{!! $product[0]->p_i_name !!}" alt="">
+    		</a>
+    	</div>
+    	<div class="product-detail-info-container">
+    		<a href="" title=""><h1>{!! $product[0]->p_name !!}</h1></a>
+	        <ul class="nav nav-tabs" role="tablist">
+    			<li role="presentation" class="active col-xs-6"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thông tin</a></li>
+    			<li role="presentation" class="col-xs-6"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Mô tả</a></li>
+  			</ul>
+
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="home">
+					<p>- Giá : <a href="" title="">{{ $product[0]->price }} VNĐ</a></p>
 	        		@if($feature_name)
 	        			@php
         					$feature = [];
@@ -56,12 +56,15 @@
 	        		@endforeach
 	        		<p class="product-detail-address">- Địa chỉ : <a href="" title="">{{$product[0]->s_address}}</a></p>
 	        		<a href="" title="" class="product-sum-like"><span><img src="http://i.imgur.com/seWtRZc.png" alt=""> {{ $product[0]->like }}</span></a>
-	        	</div>
-	        </div>
-	        <div class="product-detail-footer">
+	        		<div class="clearfix"></div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="profile">
+					@include('front.search.product-group', ['product_group' => $product_group])
+				</div>
+			</div>
+	    </div>
+	    <div class="product-detail-footer">
 	        	
-	        </div>
 	    </div>
 	</div>
-</div>
 @endif

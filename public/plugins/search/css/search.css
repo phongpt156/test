@@ -1,0 +1,120 @@
+#search-sub-menu {
+	position: relative;
+	opacity: 1;
+}
+.search-body {
+	margin-top: 20px;
+}
+/* feature option */
+.product-feature-container {
+	line-height: 100%;
+	font-family: 'piron';
+	color: #fff;
+}
+.product-feature {
+	margin-top: 20px;
+}
+.product-feature-name {
+	padding-top: 2px;
+	float: left;
+}
+.product-feature-name p {
+	width: 30px;
+	text-transform: uppercase;
+	margin: 0 20px 0 0;
+	height: 13px;
+}
+.product-feature-value-container {
+	padding-left: 30px;
+	display: flex;
+	border-bottom: 1px solid #575757;
+}
+.product-feature-value {
+	width: 100%;
+}
+.product-feature-value p {
+	text-transform: uppercase;
+	margin: 0;
+}
+.color-feature a {
+	width: 46px;
+	height: 8px;
+}
+/* end feature option */
+
+/* product-show */
+.product-show {
+	margin-top: 30px;
+
+}
+.product-card-container {
+	padding: 0 20px 0 0;
+}
+.product-card {
+	width: 100%;
+	padding: 5px 5px 0 5px;
+	background: #fff;
+}
+.product-detail-info-container {
+	width: auto;
+	word-wrap: break-word;
+	padding-top: 0;
+	float: none;
+}
+.product-detail-info-container h1 {
+	margin-top: 0;
+}
+.product-detail-info-container .nav-tabs {
+	margin-top: 30px;
+}
+.product-detail-info-container .nav-tabs > li {
+	padding: 0 5px;
+	margin-bottom: 0;
+	background: transparent;
+}
+.product-detail-info-container .nav-tabs > li.active > a
+.product-detail-info-container .active {
+	background-color: transparent;
+}
+.product-detail-info-container .nav-tabs > li.active > a {
+	color: black;
+    border-bottom: 4px solid #000000 !important;
+}
+.product-detail-info-container .nav-tabs > li > a {
+	vertical-align: middle;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	font-size: 15px;
+	color: #7e7d7d;
+	display: inline-block;
+	border: none !important;
+}
+.product-detail-info-container .nav-tabs a, .product-detail-info-container .nav-tabs a:hover {
+	opacity: 1;
+	background-color: #fff;
+}
+.product-detail-info-container .tab-pane {
+	background: transparent;
+}
+.product-detail-info-container .tab-content {
+	margin-top: 15px;
+}
+.product-detail-footer {
+	margin-top: 5px;
+}
+.product-group-container a {
+	width: auto;
+	display: block;
+}
+.product-group-item {
+	margin-top: 20px;
+}
+.product-group-image, .product-group-info {
+	display: inline-block;
+}
+.product-group-image {
+	max-width: 45px;
+	max-height: 45px;
+}
+/* end product-show */

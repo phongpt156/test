@@ -2,9 +2,7 @@
 @section('assets')
 <link rel="stylesheet" type="text/css" href="{!! asset('plugins/home/css/style.css') !!}">
 <script type="text/javascript" src="{!! asset('plugins/home/js/jssor.slider-21.1.6.min.js') !!}"></script>
-
 <script type="text/javascript" src="{!! asset('plugins/home/js/index.js') !!}"></script>
-<script type="text/javascript" src="{!! asset('plugins/jquery/bootstrap-tokenfield.min.js') !!}"></script>
 @endsection
 @section('content')
 @include('layouts.header')
@@ -20,8 +18,8 @@
             <div class="male-category category-menu-container">
                 @include('front.category.male-category', ['male_categories' => $male_categories])
             </div>
-            <!-- header bottom menu -->
-            <section id="home-body-menu">
+            <!-- sub menu -->
+            <section class="sub-menu">
                 <ul class="nav navbar-nav">
                     <li><a href="" title="">TRANG CHỦ</a></li>
                     <li><a href="" title="">SHOP</a></li>
@@ -31,14 +29,14 @@
                             ĐỊA ĐIỂM
                             <span style="margin-left:5px"><img src="http://i.imgur.com/4QUY0ge.png" alt=""></span>
                         </a>
-                        <ul class="dropdown-menu home-body-menu">
+                        <ul class="dropdown-menu sub-menu-dropdown">
                             <li><a href="" title="">Hà Nội</a></li>
                             <li><a href="" title="">TP. HCM</a></li>
                             <li><a href="" title="">Đà Nẵng</a></li>
                         </ul>
                     </li>
                 </ul>
-            </section><!-- end header bottom menu -->
+            </section><!-- end sub menu -->
 
             <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 570px; overflow: hidden;" class="slideshow">
                 <div data-p="225.00" style="display: none;">
@@ -187,14 +185,16 @@
 </section>
 <script type="text/javascript">
     $(document).ready(function(){
-        Home.init();
+        SlideShow.init();
+        ProductDetail.init();
+        SearchTagging.init();
+        ProductShow.init();
         var collection_p = $(".collection-list");
         var collection_c = $(".collection-item-container");
         var collection_id = $("#collection-total-page");
         var collection_url = "http://localhost:8000/collection?page=";
         var append_pos = $(".collection-item-container");
         Scroll.init(collection_c, collection_p, collection_id, collection_url, append_pos);
-        SearchTagging.init();
     });
 </script>
 @endsection

@@ -30,4 +30,13 @@ class ProductBLL
 	public static function GetFeatureNameProduct($id) {
 		return ProductDAL::GetFeatureNameProduct($id);
 	}
+	public static function SearchProduct($url) {
+		return ProductDAL::SearchProduct($url);
+	}
+	public static function GetIdFirstProduct($products) {
+		return ProductDAL::GetIdFirstProduct($products);
+	}
+	public static function GetProductGroup($id) {
+		return ProductDAL::GetProductGroup($id);
+	}
 }

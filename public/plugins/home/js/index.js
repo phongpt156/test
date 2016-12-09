@@ -1,42 +1,6 @@
 $(document).ready(function () {
-  $('[data-toggle="tooltip"]').tooltip(); 
-  $(".category-menu-container").hide();
-  $(".menu-header-container > li > a").on("click", function() {
-    var target = $(this).attr("target");
-    $(target).toggle();
-  });
-  $(".pft").on("click", function() {
-    $(".category-menu-container").hide();
-  });
-  $(document).on("click", function() {
-    $(".category-menu-container").hide();
-  });
-  $(".product-action ul li").on("click", function () {
-    $(this).toggleClass("active");
-  });
-  window.Home = {
+  window.SlideShow = {
     init: function() {
-      $(document).on("click", ".product-image-container", function(e) {
-        e.preventDefault();
-        e.preventDefault();
-        $.ajax({
-          async: true,
-          type: 'GET',
-          dataType: 'html',
-          url: $(this).attr("href"),
-          success: function(data) {
-            $("body").prepend(data);
-            $("#product-detail").modal({
-              show: true,
-              keyboard: 'static',
-              backdrop: true
-            });
-            $("#product-detail").on('hidden.bs.modal', function () {
-              $("#product-detail").remove();
-            });
-          }
-        }); 
-      });
       
       var jssor_1_SlideoTransitions = [
         [{b:-1,d:1,o:-1},{b:0,d:1000,o:1}],
@@ -81,21 +45,6 @@ $(document).ready(function () {
       $(window).bind("orientationchange", ScaleSlider);
       //responsive code end
 
-      $(document).on("click", ".delete-search-tag", function() {
-        length = $(".search-tag-container > .search-tag-element-container").length;
-        for(i = 0; i < length; i++) {
-          if($(".search-tag-container > .search-tag-element-container").eq(i).attr("value") === $(this).attr("target")) {
-            $(".search-tag-container > .search-tag-element-container").eq(i).remove();
-          }
-        }
-        length = $(".disabled").length;
-        for(i = 0; i < length; i++) {
-          if($(".disabled").eq(i).attr("value") === $(this).attr("target")) {
-            $(".disabled").removeClass("disabled");
-          }
-        }
-      });
-      ProductShow.init();
     }
   };
   window.Scroll = {
@@ -135,7 +84,7 @@ $(document).ready(function () {
   };
   window.ProductDetail = {
     init: function() {
-      $(".product-image-container").on("click", function(e) {
+      $(document).on("click", ".product-image-container", function(e) {
         e.preventDefault();
         $.ajax({
           async: true,
@@ -160,6 +109,17 @@ $(document).ready(function () {
 
   window.SearchTagging = {
     init: function() {
+      // Hiện thanh menu nam nữ 
+      $(".menu-header-container > li > a").on("click", function() {
+        var target = $(this).attr("target");
+        $(target).toggle();
+      });
+      $(".pft").on("click", function() {
+        $(".category-menu-container").hide();
+      });
+      $(document).on("click", function() {
+        $(".category-menu-container").hide();
+      });
       $(".search-tagging > li > a").on("click", function() {
         cls = $(this).attr("class");
         if(cls) {
@@ -214,11 +174,26 @@ $(document).ready(function () {
         }
         $(this).toggleClass("disabled");
       });
+      $(document).on("click", ".delete-search-tag", function() {
+        length = $(".search-tag-container > .search-tag-element-container").length;
+        for(i = 0; i < length; i++) {
+          if($(".search-tag-container > .search-tag-element-container").eq(i).attr("value") === $(this).attr("target")) {
+            $(".search-tag-container > .search-tag-element-container").eq(i).remove();
+          }
+        }
+        length = $(".disabled").length;
+        for(i = 0; i < length; i++) {
+          if($(".disabled").eq(i).attr("value") === $(this).attr("target")) {
+            $(".disabled").removeClass("disabled");
+          }
+        }
+      });
     }
   };
 
   window.ProductShow = {
     init: function() {
+      $('[data-toggle="tooltip"]').tooltip();
       p = $(".product");
       c = $(".product-item-container");
       length = $(".kindof-product > li").length;

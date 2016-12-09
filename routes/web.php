@@ -33,10 +33,6 @@ Route::group(['prefix' => 'category'], function () {
 
 Route::get('/product-feature/{feature_name?}', 'Front\ProductFeatureController@GetFeatureDefaultValue');
 
-Route::get('/test', function () {
-	return view('test');
-});
-
 Route::post('/search-product', 'Front\SearchController@index')->name('search-product');
 
-Route::get('/view/product/{id}', 'Front\ProductController@GetOneProduct')->where('id', '[0-9]+');
+Route::get('/view/product/{id}', 'Front\HomeController@GetOneProduct')->where('id', '[0-9]+');

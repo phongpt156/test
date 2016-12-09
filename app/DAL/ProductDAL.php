@@ -116,4 +116,20 @@ class ProductDAL
 						->get();
 		return $feature_name;
 	}
+	public static function GetIdFirstProduct($products)
+	{
+		$id = $products->pluck('id')->first();
+		return $id;
+	}
+	public static function GetProductGroup($id)
+	{
+		$products = DB::table('product as p')
+					->join('product_group as p_g', 'p.id', '=', 'p_g.product_id')
+					->join('product_group_image as p_g_i', 'p_g.id', '=', 'p_g_i.product_group_id')
+					->leftJoin('supplier as s', 'p_g.supplier_id', '=', 's.id')
+					->where('p.id', $id)
+					->select('p_g.name as p_g_name', 's.name as s_name', 'p_g_i.name as p_g_i_name', 'p_g_i.alt as p_g_i_alt', 'p_g_i.description as p_g_i_des')
+					->get();
+		return $products;
+	}
 }
