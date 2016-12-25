@@ -117,4 +117,35 @@
 	max-width: 45px;
 	max-height: 45px;
 }
+.product-group-info a {
+	display: inline-block;
+}
+
+.product {
+	max-height: 620px;
+	margin-top: 0;
+}
+.product-user-action > a > img {
+	height: 170px;
+}
+.product-info-container {
+	max-height: 35px;
+}
+.product-info-container a {
+	margin-top: 5px;
+}
+.product-name {
+	font-size: 10px;
+}
+.product-info {
+	margin-top: 0;
+}
+.product-info a {
+	margin-top: 0;
+}
+.product-sum-like {
+	top: 10000000px;
+	position: absolute;
+	display: none !important;
+}
 /* end product-show */

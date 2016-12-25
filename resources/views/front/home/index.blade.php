@@ -185,6 +185,7 @@
 </section>
 <script type="text/javascript">
     $(document).ready(function(){
+        Register.init();
         SlideShow.init();
         ProductDetail.init();
         SearchTagging.init();

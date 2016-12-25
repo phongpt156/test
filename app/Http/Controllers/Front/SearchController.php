@@ -11,7 +11,7 @@ class SearchController extends Controller
     //
     public static function index(Request $request) {
     	$url = $request->all();
-    	$products = ProductBLL::SearchProduct($url);
+    	$products = ProductBLL::GetSearchProductQueryResult(ProductBLL::SearchProductQuery($url));
     	$id = ProductBLL::GetIdFirstProduct($products);
     	$product = ProductBLL::GetOneProduct($id);
     	$product_group = ProductBLL::GetProductGroup($id);

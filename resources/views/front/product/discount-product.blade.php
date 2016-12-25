@@ -6,19 +6,19 @@
 			<a href="{{ url('view/product/' . $value->id)}}" title="" class="product-image-container">
 				<img src="{{ $value->p_i_name }}" alt="{{$value->alt}}">
 			</a>
-			<ul class="row">
-				<li class="col-xs-4 like">
-					<a href="" title="">
+			<ul class="row select-action">
+				<li class="col-xs-4" product="{{$value->id}}" user-action="like">
+					<a href="javascript:void(0)" title="">
 						<img src="http://i.imgur.com/LjwCZFM.png" alt="">
 					</a>
 				</li>
-				<li class="col-xs-4 buy">
-					<a href="" title="">
+				<li class="col-xs-4" product="{{$value->id}}" user-action="buy">
+					<a href="javascript:void(0)" title="">
 						<img src="http://i.imgur.com/O7whI4a.png" alt="">
 					</a>
 				</li>
-				<li class="col-xs-4 follow">
-					<a href="" title="">
+				<li class="col-xs-4" product="{{$value->id}}" user-action="follow">
+					<a href="javascript:void(0)" title="">
 						<img src="http://i.imgur.com/MgPip0a.png" alt="">
 					</a>
 				</li>

@@ -1,4 +1,4 @@
-{!! Form::open(['route' => 'search-product', 'method' => 'POST', 'class' => 'clearfix']) !!}
+{!! Form::open(['route' => 'search-product', 'method' => 'get', 'class' => 'clearfix']) !!}
 
 <label class="input-form-container col-xs-11" for="text">
 	<div class="search-tag-container">

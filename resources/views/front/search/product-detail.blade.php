@@ -1,4 +1,4 @@
-@if($product)
+@if(isset($product))
 	<div class="product-card clearfix">
 		<div class="product-detail-image-container">
     		<a href="" title="">

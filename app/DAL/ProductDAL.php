@@ -43,9 +43,8 @@ class ProductDAL
 		$products->setPath('product/tendency');
 		return $products;
 	}
-
-	public static function SearchProduct($info) {
-		$product = ProductDAL::ProductQuery();
+	public static function SearchProductQuery($info) {
+		$products = ProductDAL::ProductQuery();
     	$where = [];
         $orWhere = [];
     	if(isset($info['product']['name']))
@@ -54,7 +53,7 @@ class ProductDAL
     	}
     	if(isset($info['cate']))
     	{	
-    		$product = $product
+    		$products = $products
 	    				->join('category as c', 'p.cate_id', '=', 'c.id');
     		if(isset($info['cate']['male']))
 	    	{	
@@ -77,19 +76,23 @@ class ProductDAL
     	}
     	if(isset($info['product']['feature'])) 
         {
-            $product = $product
+            $products = $products
                         ->join('product_feature_value as pfv', 'p.id', '=', 'pfv.product_id')
                         ->join('feature as f', 'pfv.feature_id', '=', 'f.id')
                         ->whereIn('pfv.feature_value', $info['product']['feature'])
                         ->orWhereIn('pfv.vns_feature_value', $info['product']['feature']);
         }
-    	$product = $product
+    	$products = $products
                     ->where($where)
                     ->orWhere($orWhere)
-                    ->get();
-        return $product;
+                    ->orderBy('p.created_at');
+        return $products;
 	}
-
+	public static function GetSearchProductQueryResult($products)
+	{
+		$products = $products->paginate('16')->setPath('product/newest');
+		return $products;
+	}
 	public static function GetOneProduct($id)
 	{
 		$product = ProductDAL::ProductQuery()
@@ -131,5 +134,21 @@ class ProductDAL
 					->select('p_g.name as p_g_name', 's.name as s_name', 'p_g_i.name as p_g_i_name', 'p_g_i.alt as p_g_i_alt', 'p_g_i.description as p_g_i_des')
 					->get();
 		return $products;
+	}
+	public static function GetLikeProduct($id)
+	{
+		$like = DB::table('product as p')
+					->leftJoin('product_rating as p_r', 'p.id', '=', 'p_r.product_id')
+					->where('p.id', '=', $id)
+					->pluck('p_r.like')
+					->first();
+		return $like;
+	}
+	public static function UpdateLikeProduct($product_id, $like)
+	{
+		$status = DB::table('product_rating as p_r')
+					->where('p_r.id', '=', $product_id)
+					->update(['p_r.like' => $like]);
+		return $status;
 	}
 }

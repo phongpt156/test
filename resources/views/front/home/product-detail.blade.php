@@ -1,4 +1,4 @@
-@if($product)
+@if(isset($product))
 <div class="modal fade" id="product-detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog product-modal" role="document">
 	    <div class="product-detail-container">

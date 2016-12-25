@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{!! asset('plugins/home/css/style.css') !!}">
 <link rel="stylesheet" type="text/css" href="{!! asset('plugins/search/css/search.css') !!}">
 <script type="text/javascript" src="{!! asset('plugins/home/js/index.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('plugins/search/js/index.js') !!}"></script>
 @endsection
 @section('content')
 @include('layouts.header')
@@ -116,15 +117,24 @@
 	<div class="row product-show">
 		<div class="col-md-6 product-card-container">
 			@include('front.search.product-detail', ['product' => $product, 'feature_value' => $feature_value, 'feature_name' => $feature_name, 'product_group' => $product_group])
+			<div class="">
+				
+			</div>
 		</div>
-		<div class="col-md-6">
-			
+		<div class="col-md-6 product">
+			<div class="product-container">
+			<ul class="product-item-container clearfix">
+			@include('front.product.newestproduct', ['newest_products' => $products])
+			</ul>
+			</div>
 		</div>
 	</div>
 </div><!-- end search body -->
 <script type="text/javascript">
     $(document).ready(function(){
+    	Register.init();
         SearchTagging.init();
+        Scroll.init();
     });
 </script>
 @endsection

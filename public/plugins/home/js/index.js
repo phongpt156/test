@@ -1,4 +1,92 @@
 $(document).ready(function () {
+  $("#alert-login-modal").modal({
+                  show: true,
+                  keyboard: 'static',
+                  backdrop: true
+                });
+  $(".phone-number-register-form").validate({
+    rules: {
+      phonenumber_register: {
+        required: true,
+        number: true,
+        minlength: 9,
+        maxlength: 12,
+        remote: "/user/check_exist_phonenumber/"
+      },
+      password_register: {
+        required: true,
+        minlength: 6
+      },
+      repeatpassword_register: {
+        required: true,
+        equalTo: "#password_register"
+      }
+    },
+    messages: {
+      phonenumber_register: {
+        required: "Nhập số điện thoại",
+        number: "Số điện thoại ko hợp lệ",
+        minlength: "Số điện thoại ko hợp lệ",
+        maxlength: "Số điện thoại ko hợp lệ",
+        remote: "Số điện thoại đã được đăng ký"
+      },
+      password_register: {
+        required: "Bạn chưa nhập mật khẩu",
+        minlength: "Mật khẩu quá ngắn"
+      },
+      repeatpassword_register: {
+        required: "Nhập lại mật khẩu",
+        equalTo: "Mật khẩu không khớp"
+      }
+    }
+  });
+  $(".phone-number-login-form").validate({
+    rules: {
+      phonenumber_login: {
+        required: true
+      },
+      password_login: {
+        required: true
+      }
+    },
+    messages: {
+      phonenumber_login: {
+        required: "Nhập số điện thoại"
+      },
+      password_login: {
+        required: "Bạn chưa nhập mật khẩu"
+      }
+    }
+  });
+  window.Register = {
+    init: function() {
+      $(".phone-register").on("click", function(){
+        $(".gmail-register").toggle();
+        $(".phone-number-register-box").toggle();
+        $(".register-form-container").toggleClass("register-height");
+        $("#register-box").on('hidden.bs.modal', function () {
+          $(".gmail-register").show();
+          $(".phone-number-register-box").hide();
+          $(".register-form-container").removeClass("register-height");
+        });
+      });
+      $(".phone-login").on("click", function(){
+        $(".gmail-login").toggle();
+        $(".phone-number-login-box").toggle();
+        $(".login-form-container").toggleClass("login-height");
+        $("#login-box").on('hidden.bs.modal', function () {
+          $(".gmail-login").show();
+          $(".phone-number-login-box").hide();
+          $(".login-form-container").removeClass("login-height");
+        });
+      });
+      $("#success-modal").modal({
+        show: true,
+        keyboard: 'static',
+        backdrop: true
+      });
+    }
+  };
   window.SlideShow = {
     init: function() {
       
@@ -243,6 +331,60 @@ $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip();
               }
             });
+          }
+        }
+      });
+
+      // Like Follow sản phẩm
+      $(document).on("click", ".select-action > li", function(){
+        target = $(this);
+        user_action = target.attr("user-action");
+        product = target.attr("product");
+        switch(user_action)
+        {
+          case "like" : 
+          {
+            $.ajax({
+              type: "GET",
+              data: {
+                product: product
+              },
+              url: "/user/check-login",
+              dataType: "json",
+              success: function(a) {
+                html = '<div class="modal fade" id="alert-login-modal"><div class="modal-dialog" role="document" id=""><div class="alert-login"><div class="alert-login-background"><div class="alert-login-logo"><a href="" title=""><img src="http://i.imgur.com/qwR1IG9.png" alt=""></a></div><p>Đăng nhập ngay để được cập nhật những item mới nhất theo sở thích của bạn nhé</p><div class="alert-login-footer"><div class="alert-register col-xs-6"><a href="" title="">Đăng ký</a></div><div class="alert-register col-xs-6"><a href="" title="">Đăng nhập</a></div></div></div></div></div></div>'
+                if(!a)
+                {
+                  $("body").prepend(html);
+                  $("#alert-login-modal").modal({
+                    show: true,
+                    keyboard: 'static',
+                    backdrop: true
+                  });
+                  $("#alert-login-modal").on('hidden.bs.modal', function () {
+                    $("#alert-login-modal").remove();
+                  });
+                }
+                else
+                {
+                  cls = target.attr("class");
+                  if(cls.search("likedBtn") !== -1) target.removeClass("likedBtn");
+                  else target.addClass("likedBtn");
+                  $.ajax({
+                    type: "GET",
+                    data: {
+                      product: product
+                    },
+                    url: "/user-action/like",
+                    dataType: "json",
+                    success: function(b) {
+                      return false;
+                    }
+                  });
+                }
+              }
+            });
+            break;
           }
         }
       });

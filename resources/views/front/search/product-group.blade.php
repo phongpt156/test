@@ -10,6 +10,8 @@
 			<div class="product-group-info">
 				<a href="" title="">
 					{{ $value->p_g_name }}
+				</a>
+				<a href="" title="">
 					@if($value->s_name)
 						({{$value->s_name}})
 					@endif

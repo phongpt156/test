@@ -12,6 +12,9 @@ body {
     color: black;
     background: #141414;
 }
+.likedBtn {
+    background-color: #313131;
+}
 .container-fluid {
     padding: 0;
 }
@@ -44,6 +47,19 @@ a:hover, a:focus, a:active {
     background-color: transparent;
 }
 /* header */
+.user-avatar-container {
+    margin-top: 5px;
+    border-radius: 50%;
+    background-color: #58595B;
+}
+.user-avatar-container > a {
+    padding-top: 15px !important;
+    background-color: transparent !important;
+}
+.user-avatar-container > a > img {
+    width: 25px;
+    height: 30px;
+}
 .navbar-brand {
     height: auto;
 }
@@ -202,7 +218,7 @@ span.search-tag-element {
 
 /* menu slideshow*/
 .sub-menu{
-    z-index: 1000;
+    z-index: 999;
     width: 100%;
     position: absolute;
     opacity: 0.66;
@@ -544,16 +560,20 @@ span.search-tag-element {
 
 
 /* register box modal */
-.register-form-container {
+.register-form-container, .login-form-container {
     width: 386px;
-    padding: 18px 0 0 27px;
+    position: relative;
+    padding: 18px 27px 0 27px;
     opacity: 0.95;
     margin: 20px auto;
     height: 231px;
     color: white;
     background-color: #333331;
 }
-.register-form-container a {
+.register-height, .login-height {
+    height: 290px !important;
+}
+.register-form-container a, .login-form-container a {
     text-align: left;
     font-size: 20px;
     text-align: justify;
@@ -567,8 +587,51 @@ span.search-tag-element {
     width: 339px;
     height: 44px;
 }
-.phone-register, .gmail-register {
+.phone-register, .gmail-register, .phone-login, .gmail-login {
     margin-top: 40px;
+}
+.phone-number-register-box, .phone-number-login-box {
+    display: none;
+}
+.phone-number-register-form input[type="text"], .phone-number-register-form input[type="password"], .phone-number-login-form input[type="text"], .phone-number-login-form input[type="password"] {
+    width: 100%;
+    outline: none;
+    padding: 5px 0 2px 5px;
+    margin-top: 10px;
+    font-style: italic;
+    display: block;
+    color: #939393;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #939393;
+}
+.phone-number-register-form input[type="submit"], .phone-number-login-form input[type="submit"], .cancel-button {
+    outline: none;
+    margin-top: 10px;
+    color: #939393;
+    border: none;
+    background-color: transparent;
+}
+.phone-number-register-form input[type="submit"]:hover, .phone-number-login-form input[type="submit"]:hover, .cancel-button:hover {
+    text-decoration: underline;
+}
+label.error {
+    position: absolute;
+    font-size: 12px;
+    color: red;
+}
+.alert {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+.alert-danger {
+    top: 65px;
+    position: absolute;
+    background-color: transparent;
+}
+.alert-danger ul{
+    list-style: none;
 }
 /* end register box modal */
 
@@ -696,3 +759,156 @@ span.search-tag-element {
     color: black;
 }
 /* end product detail */
+
+/* success box */
+.success-box {
+    z-index: 1001;
+    overflow: hidden;
+}
+.success-box-container {
+    background-color: #fff;
+}
+.success-box-title {
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #5690b5;
+    box-shadow: 0 1px 1px 0 #73aed3 inset;
+}
+.success-box-content {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 22px;
+}
+.success-box-content > div {
+    text-align: center;
+    font-size: 13px;
+}
+.success-box-content h3, h2 {
+    margin: 0;
+}
+.success-box-content > div h3 {
+    font-size: 17px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    font-weight: bold;
+    color: #888;
+    line-height: 24px;
+}
+.success-box-footer {
+    padding: 0 0 8px;
+    text-align: center;
+}
+.btn_L3 {
+    background-color: #2890cc;
+    border: 2px solid #147fbc;
+}
+.btn_L3:hover {
+    opacity: 1;
+    text-decoration: none;
+    background-color: #4a9857;
+    border-color: #3d7846;
+}
+.btn_L5 {
+    background: #555;
+    border: 2px solid #484848;
+}
+.btn_L3, .btn_L5 {
+    display: inline-block;
+    color: #fff;
+    font-size: 12px;
+    padding: 0 15px;
+    border-radius: 40px;
+    line-height: 19px;
+    height: 23px;
+    transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    margin: 0 5px;
+}
+.btn_L5:hover {
+    opacity: 1;
+    background-color: #333;
+    border: 2px solid #222;
+    text-decoration: none;
+    color: #fff;
+}
+/* end success box */
+
+/* login error */
+.login-error {
+    top: 100px;
+    position: absolute;
+    left: -150px;
+}
+.tooltiparrow {
+    width: 8px;
+    margin-top: 9px;
+    height: 13px;
+    float: right;
+    background-image: url('https://stc-id.zing.vn/login/images/zidsprt_1.13.png');
+    background-position: -160px -144px;
+}
+.tooltipbody {
+    width: 165px;
+    padding: 5px;
+    max-width: 300px;
+    margin-right: 7px;
+    line-height: 18px;
+    font-size: 13px;
+    color: #fff;
+    border-radius: 3px;
+    border: 1px solid #dd7171;
+    background-color: #dd7171;
+}
+/* end login error */
+
+/* alert login */
+.alert-login {
+    font-size: 21px;
+    color: white;
+    background: url('https://s23.postimg.org/h9nprqc6z/abc.jpg') no-repeat 50%;
+}
+.alert-login-background {
+    width: 484px;
+    opacity: 0.84;
+    margin: 0 auto;
+    height: 252px;
+    background-color: #000;
+}
+.alert-login-background > p {
+    text-align: center;
+}
+.alert-login-logo {
+    padding: 10px 12px;
+}
+.alert-login-logo a{
+    text-align: center;
+    display: block;
+}
+.alert-login-footer {
+    width: 200px;
+    margin-top: 30px !important;
+    margin: 0 auto;
+    font-size: 18px;
+}
+.alert-register {
+    padding: 0;
+}
+.alert-register a {
+    color: #7b7b7b;
+}
+.alert-register:first-child {
+    text-align: right;
+    padding-right: 5px;
+    border-right: 1px solid #7b7b7b;
+}
+.alert-register:nth-child(2) {
+    text-align: left;
+    padding-left: 5px;
+}
+/* end alert login */

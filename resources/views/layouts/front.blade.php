@@ -6,6 +6,8 @@
 	<title>MIX VN @yield('title')</title>
 	<link rel="stylesheet" href="{!! asset('plugins/bootstrap/css/bootstrap.min.css') !!}">
 	<script type="text/javascript" src="{!! asset('plugins/jquery/jquery.min.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('plugins/jquery/jquery.validate.min.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('plugins/jquery/additional-methods.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('plugins/bootstrap/js/bootstrap.min.js') !!}"></script>
 	@yield('assets')
 </head>

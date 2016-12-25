@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\BLL\FrontEnd\CategoryBLL;
 use App\BLL\FrontEnd\ProductFeatureBLL;
+use App\BLL\FrontEnd\ProductLikerBLL;
+use Illuminate\Support\Facades\Auth;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,7 +27,17 @@ class AppServiceProvider extends ServiceProvider
             $color_values = ProductFeatureBLL::GetFeatureDefaultValue('mau_sac');
             $pattern_values = ProductFeatureBLL::GetFeatureDefaultValue('hoa_tiet');
             $material_values = ProductFeatureBLL::GetFeatureDefaultValue('chat_lieu');
-            $param = compact('male_categories', 'female_categories', 'color_values', 'pattern_values', 'material_values');
+            if(Auth::check())
+            {
+                $user_id = Auth::user()->id;
+                $list_product_liker = ProductLikerBLL::GetProductLiker($user_id);
+                $param = compact('male_categories', 'female_categories', 'color_values', 'pattern_values', 'material_values', 'list_product_liker');
+            }
+            else
+            {
+                $param = compact('male_categories', 'female_categories', 'color_values', 'pattern_values', 'material_values');
+            }
+            
             return $view->with($param);
         });
     }
